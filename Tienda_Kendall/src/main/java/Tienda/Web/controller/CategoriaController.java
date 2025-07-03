@@ -24,7 +24,7 @@ public class CategoriaController {
         var categorias = categoriaService.getCategorias(false);
         model.addAttribute("categorias", categorias);
         model.addAttribute("totalCategorias",categorias.size());
-        return "/categoria/listado";
+        return "categoria/listado"; // ✅ sin slash
     }
     
      @GetMapping("/nuevo")
@@ -42,13 +42,13 @@ public class CategoriaController {
             categoriaService.save(categoria);
         }
         categoriaService.save(categoria);
-        return "redirect:/categoria/listado";
+        return "categoria/listado"; // ✅ sin slash
     }
 
     @GetMapping("/eliminar/{idCategoria}")
     public String categoriaEliminar(Categoria categoria) {
         categoriaService.delete(categoria);
-        return "redirect:/categoria/listado";
+        return "categoria/listado"; // ✅ sin slash
     }
 
     @GetMapping("/modificar/{idCategoria}")
