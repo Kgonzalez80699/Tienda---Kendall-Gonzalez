@@ -7,8 +7,8 @@
     </head>
     <body>
         <!-- 1 Sección principal para mostrar la informaccion de las categorias -->
-        <section th:fragment="categoriasTabs" id="categorias">
-            <div class="row py-4">
+        <section th:fragment="botonAgregar" clss="py-4 mb-4 bg-light">
+            <div class="container" sec:authorize="hasRole ('ROLE_ADMIN')">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link" 
@@ -86,7 +86,8 @@
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${categoria.descripcion}]]</td>
                                             <td th:text="${categoria.activo} ? 'Activa' : 'Inactiva'" />
-                                            <td><a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
+                                            <td sec:authorize="hasRole ('ROLE_ADMIN')">
+                                                <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
                                                 <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
